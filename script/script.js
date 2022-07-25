@@ -14,4 +14,17 @@ let getDetails = (num) => {
 let storeData = (object) => {
     locStr.push(object);
     localStorage.setItem('Characters', JSON.stringify(locStr));
+    displayInfo();
+}
+
+let displayInfo = () => {
+    let info = JSON.parse(localStorage.getItem('Characters'));
+    console.log(info);
+    let display = info.map(object => {
+        return `<br><div>Name : ${object.name}</div>
+        <div>status : ${object.status}</div>
+        <div>gender : ${object.gender}</div>
+        <div>species : ${object.species}</div>`
+    }).join('');
+    document.querySelector('.display_container').innerHTML = display;
 }
